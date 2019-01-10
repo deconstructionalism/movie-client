@@ -1,0 +1,11 @@
+.Feedback.success {
+    color: green;
+}
+
+.Feedback.warning {
+    color: orange;
+}
+
+.Feedback.error {
+    color: red;
+}
