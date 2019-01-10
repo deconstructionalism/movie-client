@@ -21,7 +21,6 @@ class MovieUpdate extends Component {
     }
   }
 
-
   updateMovie = (event) => {
 
     const { id, title, director, year } = this.state
@@ -33,9 +32,20 @@ class MovieUpdate extends Component {
     const validDirector = validateDirector(director)
 
     // post request to create a single movie using axios
-    if (validTitle && validDirector && validYear && validId) {
+    // check if these fields are valid or blank before running request
+    if ((validTitle || title === '') && 
+        (validDirector || director === '') && 
+        (validYear || year === '') && 
+        validId) {
+
+      // constructs data for patch request, deleted keys with empty values
+      const data = { title, director, year }
+      for (let key in data) {
+        data[key] === '' && delete data[key]
+      }
+      
       axios.patch(`http://localhost:4741/movies/${ parseInt(id) }`, {
-        movie: { title, director, year }
+        movie: data
       })
         .then(res => this.setState({ message: `update a movie with ID: ${res.data.movie.id}`}))
         .catch(console.error)
