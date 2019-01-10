@@ -9,3 +9,24 @@
 .Feedback.error {
     color: red;
 }
+
+.Feedback {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    background-color: lightgrey;
+    padding: 5px;
+    font-size: 20px;
+    animation-duration: 3s;
+    animation-name: show-hide;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes show-hide {
+    0% { opacity: 0; }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.8; }
+    100% { opacity: 0; }
+}

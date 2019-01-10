@@ -18,17 +18,15 @@ const Home = () => {
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      feedback: {
-        message: '',
-        type: null
-      }
+  this.state = {
+      message: '',
+      type: null,
+      reloadToggle: true
     }
   }
 
   setFeedback = (message, type='success') => {
-    console.log(message, type)
-    this.setState(prevState => Object.assign({}, prevState, { feedback: { message, type } }))
+    this.setState({ message, type, reloadToggle: !this.state.reloadToggle })
   }
 
   render() {
@@ -60,8 +58,9 @@ class App extends Component {
         </ul>
 
         {/* feedback bar */}
-        <Feedback type={ this.state.feedback.type }
-                  message={ this.state.feedback.message } />
+        <Feedback key={ this.state.reloadToggle } 
+                  message={ this.state.message }
+                  type={ this.state.type }/>
 
         {/* here are our routes ie what to render when we visit a link */}
         <Route exact path="/" component={Home}/>
