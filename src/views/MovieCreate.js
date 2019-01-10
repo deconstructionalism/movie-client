@@ -14,14 +14,14 @@ class MovieCreate extends Component {
     this.state = {
       title: '',
       director: '',
-      year: '',
-      message: null
+      year: ''
     }
   }
 
   createMovie = (event) => {
 
     const { title, year, director } =  this.state
+    const { setFeedback } = this.props
 
     // validations
     const validTitle = validateTitle(title)
@@ -33,18 +33,17 @@ class MovieCreate extends Component {
       axios.post('http://localhost:4741/movies', {
         movie: { title, director, year }
       })
-        .then(res => this.setState({ message: `made a new movie with ID: ${res.data.movie.id}`}))
-        .catch(console.error)
+        .then(res => setFeedback(`made a new movie with ID: ${res.data.movie.id}`, 'success'))
+        .catch(() => setFeedback(`unable to make a new movie`, 'error'))
     } else {
-      this.setState({ message: `you have invalid form data!`})
+      setFeedback('you have invalid form data', 'warn')
     }
 
   }
 
+  // form input event handlers
   onTitleChange = event => this.setState({ title: event.target.value })
-
   onDirectorChange = event => this.setState({ director: event.target.value })
-
   onYearChange = event => this.setState({ year: event.target.value })
 
   render() {
@@ -70,6 +69,4 @@ class MovieCreate extends Component {
   }
 }
 
-// remember to export your component so it can
-// be imported and used elsewhere
 export default MovieCreate

@@ -17,18 +17,24 @@ class MovieShow extends Component {
   getMovie = () => {
 
     const { id } = this.state
+    const { setFeedback } = this.props
 
     // validations
     const validId = validateId(id)
 
     // get request to get a single movie using axios
-    if(validId) {
-      axios.get(`http://localhost:4741/movies/${ this.state.id }`)
+    if (validId) {
+      axios.get(`http://localhost:4741/movies/${ id }`)
         .then(res => this.setState({ movieData: res.data.movie }))
-        .catch(console.error)
+        .then(() =>  setFeedback('got one movie', 'success'))
+        .catch(() => setFeedback('unable to show movie', 'error')
+        )
+    } else {
+      setFeedback('you have invalid form data', 'warn')
     }
   }
 
+  // form input event handlers
   onIdChange = event => this.setState({ id: event.target.value })
 
   render() {
@@ -42,6 +48,7 @@ class MovieShow extends Component {
             <input type="submit"
                    value="Get Movie!" />
          </form>
+
          { this.state.movieData && <Movie data={ this.state.movieData } /> }
 
       </div>
@@ -49,6 +56,4 @@ class MovieShow extends Component {
   }
 }
 
-// remember to export your component so it can
-// be imported and used elsewhere
 export default MovieShow

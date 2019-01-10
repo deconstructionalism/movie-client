@@ -16,14 +16,14 @@ class MovieUpdate extends Component {
       id: '',
       title: '',
       director: '',
-      year: '',
-      message: null
+      year: ''
     }
   }
 
   updateMovie = (event) => {
 
     const { id, title, director, year } = this.state
+    const { setFeedback } = this.props
 
     // validations
     const validId = validateId(id)
@@ -44,23 +44,21 @@ class MovieUpdate extends Component {
         data[key] === '' && delete data[key]
       }
       
-      axios.patch(`http://localhost:4741/movies/${ parseInt(id) }`, {
+      axios.patch(`http://localhost:4741/movies/${ id }`, {
         movie: data
       })
-        .then(res => this.setState({ message: `update a movie with ID: ${res.data.movie.id}`}))
-        .catch(console.error)
+        .then(res => setFeedback(`updated movie with ID: ${res.data.movie.id}`, 'success'))
+        .catch(() => setFeedback('unable to update movie', 'error'))
     } else {
-      this.setState({ message: `you have invalid form data!`})
+      setFeedback('you have invalid form data', 'warn')
     }
 
   }
 
+  // form input event handlers
   onIdChange = event => this.setState({ id: event.target.value })
-
   onTitleChange = event => this.setState({ title: event.target.value })
-
   onDirectorChange = event => this.setState({ director: event.target.value })
-
   onYearChange = event => this.setState({ year: event.target.value })
 
   render() {
@@ -83,12 +81,9 @@ class MovieUpdate extends Component {
             <input type="submit"
                    value="Update Movie!" />
          </form>
-         { this.state.message && <span>{ this.state.message }</span> }
       </div>
     )
   }
 }
 
-// remember to export your component so it can
-// be imported and used elsewhere
 export default MovieUpdate
