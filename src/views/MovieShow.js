@@ -3,6 +3,7 @@ import Movie from '../components/Movie.js'
 
 import axios from 'axios'
 import { validateId } from '../bin/validations.js'
+import { clearForm } from '../bin/helpers.js'
 
 class MovieShow extends Component {
 
@@ -10,7 +11,7 @@ class MovieShow extends Component {
     super(props)
     this.state = {
       id: '',
-      movieData: null
+      movieData: ''
     }
   }
 
@@ -24,6 +25,10 @@ class MovieShow extends Component {
 
     // get request to get a single movie using axios
     if (validId) {
+
+      // clear the form
+      clearForm(this)
+
       axios.get(`http://localhost:4741/movies/${ id }`)
         .then(res => this.setState({ movieData: res.data.movie }))
         .then(() =>  setFeedback('got one movie', 'success'))

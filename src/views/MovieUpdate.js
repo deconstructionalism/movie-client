@@ -7,6 +7,7 @@ import {
   validateYear,
   validateTitle
 } from '../bin/validations.js'
+import { clearForm } from '../bin/helpers.js'
 
 class MovieUpdate extends Component {
 
@@ -37,6 +38,9 @@ class MovieUpdate extends Component {
         (validDirector || director === '') && 
         (validYear || year === '') && 
         validId) {
+
+      // clear the form
+      clearForm(this)
 
       // constructs data for patch request, deleted keys with empty values
       const data = { title, director, year }

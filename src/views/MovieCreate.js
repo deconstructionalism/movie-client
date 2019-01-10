@@ -6,6 +6,7 @@ import {
   validateTitle,
   validateYear
  } from '../bin/validations.js'
+import { clearForm } from '../bin/helpers.js'
 
 class MovieCreate extends Component {
 
@@ -19,6 +20,7 @@ class MovieCreate extends Component {
   }
 
   createMovie = (event) => {
+    clearForm(this)
 
     const { title, year, director } =  this.state
     const { setFeedback } = this.props

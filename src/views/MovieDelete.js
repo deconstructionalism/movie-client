@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import axios from 'axios'
 import { validateId } from '../bin/validations.js'
+import { clearForm } from '../bin/helpers.js'
 
 class MovieDelete extends Component {
 
@@ -21,7 +22,11 @@ class MovieDelete extends Component {
     const validId = validateId(id)
 
     // get request to get a single movie using axios
-    if(validId) {
+    if (validId) {
+
+      // clear the form
+      clearForm(this)
+
       axios.delete(`http://localhost:4741/movies/${ parseInt(id) }`)
          .then(() => setFeedback(`you deleted a movie, ID: ${ parseInt(id) }`, 'success'))
          .catch(() => setFeedback(`unable to delete the movie`, 'error'))
