@@ -1,15 +1,14 @@
-// import React in all React component files
-// import Component if you are making a stateful
-// component
 import React, { Component } from 'react'
-import axios from 'axios'
 
-//the name of the component should match the name
-// of the file
-// make sure to extend the Component class
+import axios from 'axios'
+import { 
+  validateDirector,
+  validateTitle,
+  validateYear
+ } from '../bin/validations.js'
+
 class MovieCreate extends Component {
 
-  // this is your basic constructor setup
   constructor(props) {
     super(props)
     this.state = {
@@ -20,23 +19,19 @@ class MovieCreate extends Component {
     }
   }
 
-  // you must have a render function that returns
-  // some jsx
-
   createMovie = (event) => {
 
-    // validating a few of our form values
-    const titleValid = this.state.title.length < 50
-    // const yearValid = parseInt(this.state.year) && parseInt(this.state.year) >= 1893
+    const { title, year, director } =  this.state
+
+    // validations
+    const validTitle = validateTitle(title)
+    const validYear = validateYear(year)
+    const validDirector = validateDirector(director)
 
     // post request to create a single movie using axios
-    if (titleValid) {
+    if (validTitle && validDirector && validYear) {
       axios.post('http://localhost:4741/movies', {
-        movie: {
-          title: this.state.title,
-          director: this.state.director,
-          year: this.state.year
-        }
+        movie: { title, director, year }
       })
         .then(res => this.setState({ message: `made a new movie with ID: ${res.data.movie.id}`}))
         .catch(console.error)

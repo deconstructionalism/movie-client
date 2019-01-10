@@ -1,15 +1,10 @@
-// import React in all React component files
-// import Component if you are making a stateful
-// component
 import React, { Component } from 'react'
-import axios from 'axios'
 
-//the name of the component should match the name
-// of the file
-// make sure to extend the Component class
+import axios from 'axios'
+import { validateId } from '../bin/validations.js'
+
 class MovieDelete extends Component {
 
-  // this is your basic constructor setup
   constructor(props) {
     super(props)
     this.state = {
@@ -18,17 +13,16 @@ class MovieDelete extends Component {
     }
   }
 
-  // you must have a render function that returns
-  // some jsx
 
   deleteMovie = () => {
 
     const { id } = this.state
 
-    const idValid = parseInt(id) && parseInt(id) >= 0
+    // validations
+    const validId = validateId(id)
 
     // get request to get a single movie using axios
-    if(idValid) {
+    if(validId) {
       axios.delete(`http://localhost:4741/movies/${ parseInt(id) }`)
          .then(() => this.setState({ message: `you deleted a movie, ID: ${ parseInt(id) }` }))
          .catch(console.error)
