@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-import './App.css'
 import { Route, Link } from 'react-router-dom'
-import MovieIndex from './MovieIndex.js'
-import MovieShow from './MovieShow.js'
-import MovieCreate from './MovieCreate.js'
-import MovieUpdate from './MovieUpdate.js'
-import MovieDelete from './MovieDelete.js'
+import MovieIndex from './views/MovieIndex.js'
+import MovieShow from './views/MovieShow.js'
+import MovieCreate from './views/MovieCreate.js'
+import MovieUpdate from './views/MovieUpdate.js'
+import MovieDelete from './views/MovieDelete.js'
 
-// stateless component
+import './styles/App.css'
+
 const Home = () => {
   return (
     <p>Welcome to the Movie app!</p>
   )
 }
-
 
 // stateful component
 class App extends Component {

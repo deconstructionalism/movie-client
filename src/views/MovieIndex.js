@@ -1,9 +1,7 @@
-// import React in all React component files
-// import Component if you are making a stateful
-// component
 import React, { Component } from 'react'
+import Movie from '../components/Movie.js'
+
 import axios from 'axios'
-import Movie from './Movie.js'
 
 //the name of the component should match the name
 // of the file
