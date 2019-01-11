@@ -1,14 +1,86 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: sans-serif;
+  background-color: #FFF;
+  height: 100vh;
+  font-size: 14px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+*, * > * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+header {
+  color: rgb(231, 187, 105);
+  background-color: #261f41;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+a,
+a:visited,
+a:link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: rgb(231, 187, 105);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: #261f41;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+nav > * {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+main {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border: .2rem solid rgba(0,0,0,.075);
+}
+
+input {
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  margin: 10px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  padding: 5px;
+  border: 0;
+  border-radius: 4px;
+  background-color: rgb(247, 190, 83);
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: orange;
+  cursor: pointer;
 }

@@ -42,8 +42,7 @@ class MovieDelete extends Component {
     return (
       <div>
          <form onSubmit={ this.deleteMovie }>
-            <input type="number"
-                   placeholder="Id of movie to get"
+            <input placeholder="Id of movie to get"
                    value={ this.state.id }
                    onChange={ this.onIdChange } />
             <input type="submit"

@@ -1,32 +1,35 @@
 .Feedback.success {
-    color: green;
+    background-color: lightgreen;
 }
 
-.Feedback.warning {
-    color: orange;
+.Feedback.warn {
+    background-color: lightsalmon;
 }
 
 .Feedback.error {
-    color: red;
+    background-color: lightcoral;
 }
 
 .Feedback {
+    color: black;
     position: fixed;
     top: 0;
-    width: 100%;
+    right: 0;
+    margin: 5px;
     text-align: center;
-    background-color: lightgrey;
+    width: 200px;
+    border-radius: 2px;
     padding: 5px;
-    font-size: 20px;
+    font-size: 14px;
     animation-duration: 3s;
     animation-name: show-hide;
     animation-fill-mode: forwards;
-    animation-timing-function: linear;
+    animation-timing-function: ease;
 }
 
 @keyframes show-hide {
-    0% { opacity: 0; }
-    20% { opacity: 0.8; }
-    80% { opacity: 0.8; }
+    0% { transform: translate(200px); }
+    20% { transform: translate(-0px); }
+    30% { opacity: 1; }
     100% { opacity: 0; }
 }

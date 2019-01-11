@@ -20,8 +20,6 @@ class MovieCreate extends Component {
   }
 
   createMovie = (event) => {
-    clearForm(this)
-
     const { title, year, director } =  this.state
     const { setFeedback } = this.props
 
@@ -32,6 +30,10 @@ class MovieCreate extends Component {
 
     // post request to create a single movie using axios
     if (validTitle && validDirector && validYear) {
+      
+      // clear the form
+      clearForm(this)
+
       axios.post('http://localhost:4741/movies', {
         movie: { title, director, year }
       })

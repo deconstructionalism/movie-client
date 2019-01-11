@@ -33,47 +33,40 @@ class App extends Component {
     return (
       // this is our app
       <div>
-        <h1>Movie Client</h1>
+        <header>
+          <h1>Movies</h1>
 
-        {/* this is our nav */}
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/movies">All Movies</Link>
-          </li>
-          <li>
-            <Link to="/movie">Single Movie</Link>
-          </li>
-          <li>
-            <Link to="/add-movie">Add Movie</Link>
-          </li>
-          <li>
-            <Link to="/update-movie">Update Movie</Link>
-          </li>
-          <li>
-            <Link to="/delete-movie">Delete Movie</Link>
-          </li>
-        </ul>
+          {/* this is our nav */}
 
-        {/* feedback bar */}
-        <Feedback key={ this.state.reloadToggle } 
-                  message={ this.state.message }
-                  type={ this.state.type }/>
+          {/* feedback bar */}
+          <Feedback key={ this.state.reloadToggle } 
+                    message={ this.state.message }
+                    type={ this.state.type }/>
+        </header>
+          <nav>
+              <Link to="/">Home</Link>
+              <Link to="/movies">Show All</Link>
+              <Link to="/movie">Show One</Link>
+              <Link to="/add-movie">Add</Link>
+              <Link to="/update-movie">Update</Link>
+              <Link to="/delete-movie">Delete</Link>
+          </nav>
 
-        {/* here are our routes ie what to render when we visit a link */}
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/movies" 
-               render={ () => <MovieIndex setFeedback={ this.setFeedback }/> }/>
-        <Route exact path="/movie" 
-               render={ () => <MovieShow setFeedback={ this.setFeedback }/> }/>
-        <Route exact path="/add-movie" 
-               render={ () => <MovieCreate setFeedback={ this.setFeedback }/> }/>
-        <Route exact path="/update-movie" 
-               render={ () => <MovieUpdate setFeedback={ this.setFeedback }/> }/>
-        <Route exact path="/delete-movie" 
-               render={ () => <MovieDelete setFeedback={ this.setFeedback }/> }/>
+        <main>
+
+          {/* here are our routes ie what to render when we visit a link */}
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/movies" 
+                render={ () => <MovieIndex setFeedback={ this.setFeedback }/> }/>
+          <Route exact path="/movie" 
+                render={ () => <MovieShow setFeedback={ this.setFeedback }/> }/>
+          <Route exact path="/add-movie" 
+                render={ () => <MovieCreate setFeedback={ this.setFeedback }/> }/>
+          <Route exact path="/update-movie" 
+                render={ () => <MovieUpdate setFeedback={ this.setFeedback }/> }/>
+          <Route exact path="/delete-movie" 
+                render={ () => <MovieDelete setFeedback={ this.setFeedback }/> }/>
+        </main>
       </div>
     )
   }
