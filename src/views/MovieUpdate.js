@@ -17,13 +17,18 @@ const MovieUpdate = props => {
 
               <Input name="id"
                      type="number"
+                     errorMessage="must be a positive integer"
                      required/>
-              <Input name="title"
-                     type="text"/>
-              <Input name="director"
-                     type="text"/>
-              <Input name="year"
-                     type="date"/>
+               <Input name="title"
+                      type="text"
+                      errorMessage="must be 50 characters or less"
+                      required/>
+               <Input name="director"
+                      errorMessage="must be a valid name"
+                      type="text"/>
+               <Input name="year"
+                      errorMessage="must be on or after 1893"
+                      type="date"/>
 
       </Form>
     </div>

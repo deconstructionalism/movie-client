@@ -4,8 +4,6 @@ import '../styles/Form.css'
 import * as validations from '../bin/validations.js'
 import { titleCase } from '../bin/helpers.js'
 
-export const FormContext = React.createContext()
-
 class Form extends Component {
 
   constructor(props) {
@@ -13,19 +11,20 @@ class Form extends Component {
       this.state = {}
   }
 
-  componentDidMount () {
+  componentWillMount () {
     const { children } = this.props
     const initialState = {}
 
     React.Children.forEach(children, child => {
       const { name } = child.props
+      
       if (name) initialState[name] = { value: '', invalid: false}
     })
 
     this.setState(initialState)
   }
 
-  onFormChange = event => {
+  onFieldChange = event => {
     const { name, value } = event.target
 
     this.setState(prevState => {
@@ -97,17 +96,28 @@ class Form extends Component {
   }
 
   render() {
+    
+    const Children = React.Children.map(this.props.children, child => {
+      const { name: childName } = child.props
+
+      return childName 
+        ? React.cloneElement(child, { 
+            value: this.state[childName].value,
+            invalid: this.state[childName].invalid,
+            onChange: this.onFieldChange
+        })
+        : child
+    })
+
 
     return (
       <form className="Form"
-            onSubmit={ this.onFormSubmit }
-            onChange={ this.onFormChange }>
+            onSubmit={ this.onFormSubmit }>
             { this.props.legendText && <legend>{ this.props.legendText }</legend> }
             <fieldset>
-              <FormContext.Provider value={ this.state }>
-                { this.props.children }
-              </FormContext.Provider>
-    
+
+              { Children }
+  
               <input type="submit" 
                     value={ this.props.buttonText ? this.props.buttonText : 'Submit' } />
             </fieldset>
