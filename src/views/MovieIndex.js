@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Movie from '../components/Movie.js'
 
-import axios from 'axios'
+import { getMovies } from '../bin/api.js'
 
 class MovieIndex extends Component {
 
@@ -16,8 +16,7 @@ class MovieIndex extends Component {
 
     const { setFeedback } = this.props
     
-    // get all movies using axios
-    axios.get('http://localhost:4741/movies')
+    getMovies()
       .then(res => this.setState({ movies: res.data.movies }))
       .then(() => setFeedback('got all movies', 'success'))
       .catch(() => setFeedback('unable to get all movies', 'error'))
@@ -25,8 +24,9 @@ class MovieIndex extends Component {
 
   render() {
 
-    const movies = this.state.movies.map((data, index) => <Movie key={ index }
-                                                                 data={ data }/> )
+    const movies = this.state.movies.map((data, index) => {
+      return <Movie key={ index } data={ data }/> 
+    })
 
     return (
       <div>

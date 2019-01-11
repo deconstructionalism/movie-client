@@ -11,7 +11,7 @@ export const createMovie = data => axios.post(`${ baseUrl }/movies/`, {
 })
 
 export const updateMovie = data => {
-  const { id } = data.id
+  const { id } = data
   delete data.id
   return axios.patch(`${ baseUrl }/movies/${ id }`, {
     movie: data

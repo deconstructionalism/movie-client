@@ -1,59 +1,43 @@
 import React, { Component } from 'react'
 import Movie from '../components/Movie.js'
+import Form from '../components/Form.js'
+import Input from '../components/Input.js'
 
-import axios from 'axios'
-import { validateId } from '../bin/validations.js'
-import { clearForm } from '../bin/helpers.js'
+import { getMovie }  from '../bin/api.js'
 
 class MovieShow extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      id: '',
       movieData: ''
     }
   }
 
-  getMovie = () => {
-
-    const { id } = this.state
-    const { setFeedback } = this.props
-
-    // validations
-    const validId = validateId(id)
-
-    // get request to get a single movie using axios
-    if (validId) {
-
-      // clear the form
-      clearForm(this)
-
-      axios.get(`http://localhost:4741/movies/${ id }`)
-        .then(res => this.setState({ movieData: res.data.movie }))
-        .then(() =>  setFeedback('got one movie', 'success'))
-        .catch(() => setFeedback('unable to show movie', 'error')
-        )
-    } else {
-      setFeedback('you have invalid form data', 'warn')
-    }
+  gotMovieSuccess = res => {
+    this.setState({ movieData: res.data.movie })
   }
-
-  // form input event handlers
-  onIdChange = event => this.setState({ id: event.target.value })
 
   render() {
     return (
       <div>
-         <form onSubmit={ this.getMovie }>
-            <input placeholder="Id of movie to get"
-                   value={ this.state.id }
-                   onChange={ this.onIdChange } />
-            <input type="submit"
-                   value="Get Movie!" />
-         </form>
+        <Form legendText="Show a Movie"
+            buttonText="Get Movie"
+            setFeedback={ this.props.setFeedback }
+            feedbackSuccess="got movie"
+            feedbackFailure="failed to get movie"
+            request={ getMovie }
+            postRequestCallback={ this.gotMovieSuccess }>
 
-         { this.state.movieData && <Movie data={ this.state.movieData } /> }
+               <Input name="id"
+                      type="text"
+                      required/>
+
+        </Form>
+         
+         <section>
+           { this.state.movieData && <Movie data={ this.state.movieData } /> }
+         </section>
 
       </div>
     )

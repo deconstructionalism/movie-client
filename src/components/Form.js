@@ -75,10 +75,12 @@ class Form extends Component {
     const { 
       feedbackSuccess='succeeded',
       feedbackFailure='failed',
-      setFeedback
+      setFeedback,
+      postRequestCallback
     } = this.props
     
     this.props.request(data)
+      .then(postRequestCallback)
       .then(() => setFeedback(feedbackSuccess, 'success'))
       .catch(() => setFeedback(feedbackFailure, 'error'))
   }

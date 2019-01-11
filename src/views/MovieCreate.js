@@ -1,76 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Form from '../components/Form.js'
+import Input from '../components/Input.js'
 
-import axios from 'axios'
-import { 
-  validateDirector,
-  validateTitle,
-  validateYear
- } from '../bin/validations.js'
-import { clearForm } from '../bin/helpers.js'
+import { createMovie }  from '../bin/api.js'
 
-class MovieCreate extends Component {
+const MovieCreate = props => {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      title: '',
-      director: '',
-      year: ''
-    }
-  }
-
-  createMovie = (event) => {
-    const { title, year, director } =  this.state
-    const { setFeedback } = this.props
-
-    // validations
-    const validTitle = validateTitle(title)
-    const validYear = validateYear(year)
-    const validDirector = validateDirector(director)
-
-    // post request to create a single movie using axios
-    if (validTitle && validDirector && validYear) {
-      
-      // clear the form
-      clearForm(this)
-
-      axios.post('http://localhost:4741/movies', {
-        movie: { title, director, year }
-      })
-        .then(res => setFeedback(`made a new movie with ID: ${res.data.movie.id}`, 'success'))
-        .catch(() => setFeedback(`unable to make a new movie`, 'error'))
-    } else {
-      setFeedback('you have invalid form data', 'warn')
-    }
-
-  }
-
-  // form input event handlers
-  onTitleChange = event => this.setState({ title: event.target.value })
-  onDirectorChange = event => this.setState({ director: event.target.value })
-  onYearChange = event => this.setState({ year: event.target.value })
-
-  render() {
     return (
       <div>
-         <form onSubmit={ this.createMovie }>
-            <input placeholder="title"
-                   value={ this.state.title }
-                   onChange={ this.onTitleChange }/>
-            <input placeholder="director"
-                   value={ this.state.director }
-                   onChange={ this.onDirectorChange }/>
-            <input placeholder="year"
-                   value={ this.state.year }
-                   onChange={ this.onYearChange }
-                   type="date"/>
-            <input type="submit"
-                   value="Create Movie!" />
-         </form>
-         { this.state.message && <span>{ this.state.message }</span> }
+        <Form legendText="Make a New Movie"
+              buttonText="Create Movie"
+              setFeedback={ props.setFeedback }
+              feedbackSuccess="made a new movie"
+              feedbackFailure="failed to make a new movie"
+              request={ createMovie }>
+
+               <Input name="title"
+                      type="text"
+                      required/>
+               <Input name="director"
+                      type="text"/>
+               <Input name="year"
+                      type="date"/>
+
+        </Form>
       </div>
     )
-  }
 }
 
 export default MovieCreate

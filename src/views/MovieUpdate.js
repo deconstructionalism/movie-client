@@ -1,93 +1,33 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Form from '../components/Form.js'
+import Input from '../components/Input.js'
 
-import axios from 'axios'
-import {
-  validateId,
-  validateDirector,
-  validateYear,
-  validateTitle
-} from '../bin/validations.js'
-import { clearForm } from '../bin/helpers.js'
+import { updateMovie } from '../bin/api.js'
 
-class MovieUpdate extends Component {
+const MovieUpdate = props => {
+  return (
+    <div>
+      <Form legendText="Update a Movie"
+            buttonText="Update Movie"
+            setFeedback={ props.setFeedback }
+            feedbackSuccess="update a movie"
+            feedbackFailure="failed to update a movie"
+            request={ updateMovie }
+            dropEmpty>
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      id: '',
-      title: '',
-      director: '',
-      year: ''
-    }
-  }
+              <Input name="id"
+                     type="number"
+                     required/>
+              <Input name="title"
+                     type="text"/>
+              <Input name="director"
+                     type="text"/>
+              <Input name="year"
+                     type="date"/>
 
-  updateMovie = (event) => {
-
-    const { id, title, director, year } = this.state
-    const { setFeedback } = this.props
-
-    // validations
-    const validId = validateId(id)
-    const validTitle = validateTitle(title)
-    const validYear = validateYear(year)
-    const validDirector = validateDirector(director)
-
-    // post request to create a single movie using axios
-    // check if these fields are valid or blank before running request
-    if ((validTitle || title === '') && 
-        (validDirector || director === '') && 
-        (validYear || year === '') && 
-        validId) {
-
-      // clear the form
-      clearForm(this)
-
-      // constructs data for patch request, deleted keys with empty values
-      const data = { title, director, year }
-      for (let key in data) {
-        data[key] === '' && delete data[key]
-      }
-      
-      axios.patch(`http://localhost:4741/movies/${ id }`, {
-        movie: data
-      })
-        .then(res => setFeedback(`updated movie with ID: ${res.data.movie.id}`, 'success'))
-        .catch(() => setFeedback('unable to update movie', 'error'))
-    } else {
-      setFeedback('you have invalid form data', 'warn')
-    }
-
-  }
-
-  // form input event handlers
-  onIdChange = event => this.setState({ id: event.target.value })
-  onTitleChange = event => this.setState({ title: event.target.value })
-  onDirectorChange = event => this.setState({ director: event.target.value })
-  onYearChange = event => this.setState({ year: event.target.value })
-
-  render() {
-    return (
-      <div>
-         <form onSubmit={ this.updateMovie }>
-            <input placeholder="id"
-                   value={ this.state.id }
-                   onChange={ this.onIdChange }/>
-            <input placeholder="title"
-                   value={ this.state.title }
-                   onChange={ this.onTitleChange }/>
-            <input placeholder="director"
-                   value={ this.state.director }
-                   onChange={ this.onDirectorChange }/>
-            <input placeholder="year"
-                   value={ this.state.year }
-                   onChange={ this.onYearChange }
-                   type="date"/>
-            <input type="submit"
-                   value="Update Movie!" />
-         </form>
-      </div>
-    )
-  }
+      </Form>
+    </div>
+  )
 }
 
 export default MovieUpdate
