@@ -13,11 +13,11 @@ class Form extends Component {
       this.state = {}
   }
 
-  componentWillMount () {
+  componentDidMount () {
     const { children } = this.props
     const initialState = {}
 
-    children.forEach(child => {
+    React.Children.forEach(children, child => {
       const { name } = child.props
       if (name) initialState[name] = { value: '', invalid: false}
     })
@@ -79,8 +79,8 @@ class Form extends Component {
     } = this.props
     
     this.props.request(data)
-      .then(() => setFeedback(feedbackSuccess))
-      .catch(() => setFeedback(feedbackFailure))
+      .then(() => setFeedback(feedbackSuccess, 'success'))
+      .catch(() => setFeedback(feedbackFailure, 'error'))
   }
 
   getData = () => {
@@ -101,7 +101,6 @@ class Form extends Component {
             onSubmit={ this.onFormSubmit }
             onChange={ this.onFormChange }>
             { this.props.legendText && <legend>{ this.props.legendText }</legend> }
-
             <fieldset>
               <FormContext.Provider value={ this.state }>
                 { this.props.children }
