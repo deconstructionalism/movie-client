@@ -26,7 +26,14 @@ a:hover {
 
 main {
   margin-top: 20px;
-  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+section {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 input {
