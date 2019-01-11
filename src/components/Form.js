@@ -65,26 +65,12 @@ class Form extends Component {
       setFeedback('you have invalid form data', 'warn')
       return
     } else {
-      const data = this.getData()
+      const data = this.constructData()
       this.sendData(data)
     }
   }
 
-  sendData = (data) => {
-    const { 
-      feedbackSuccess='succeeded',
-      feedbackFailure='failed',
-      setFeedback,
-      postRequestCallback
-    } = this.props
-    
-    this.props.request(data)
-      .then(postRequestCallback)
-      .then(() => setFeedback(feedbackSuccess, 'success'))
-      .catch(() => setFeedback(feedbackFailure, 'error'))
-  }
-
-  getData = () => {
+  constructData = () => {
     const { dropEmpty } = this.props
 
     const stateData = {...this.state}
@@ -94,6 +80,27 @@ class Form extends Component {
     }
     return stateData
   }
+
+  sendData = data => {
+    const { 
+      feedbackSuccess='succeeded',
+      feedbackFailure='failed',
+      setFeedback,
+      postRequestCallback
+    } = this.props
+    
+    this.props.request(data)
+      .then(postRequestCallback)
+      .then(res => setFeedback(this.dynamicFeedback(res, feedbackSuccess), 'success'))
+      .catch(err => setFeedback(this.dynamicFeedback(err, feedbackFailure), 'error'))
+  }
+
+  dynamicFeedback = (res, feedback) => {
+    return feedback instanceof Function
+      ? feedback(res, this.state) 
+      : feedback
+  }
+
 
   render() {
     

@@ -17,8 +17,11 @@ class MovieIndex extends Component {
     const { setFeedback } = this.props
     
     getMovies()
-      .then(res => this.setState({ movies: res.data.movies }))
-      .then(() => setFeedback('got all movies', 'success'))
+      .then(res => {
+        this.setState({ movies: res.data.movies })
+        return res
+      })
+      .then(res => setFeedback(`got ${ res.data.movies.length } movies`, 'success'))
       .catch(() => setFeedback('unable to get all movies', 'error'))
   }
 

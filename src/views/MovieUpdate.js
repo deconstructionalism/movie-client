@@ -10,8 +10,8 @@ const MovieUpdate = props => {
       <Form legendText="Update a Movie"
             buttonText="Update Movie"
             setFeedback={ props.setFeedback }
-            feedbackSuccess="update a movie"
-            feedbackFailure="failed to update a movie"
+            feedbackSuccess={ res => `updated movie ID: ${ res.data.movie.id }` }
+            feedbackFailure="failed to update movie" 
             request={ updateMovie }
             dropEmpty>
 
@@ -21,8 +21,7 @@ const MovieUpdate = props => {
                      required/>
                <Input name="title"
                       type="text"
-                      errorMessage="must be 50 characters or less"
-                      required/>
+                      errorMessage="must be 50 characters or less"/>
                <Input name="director"
                       errorMessage="must be a valid name"
                       type="text"/>

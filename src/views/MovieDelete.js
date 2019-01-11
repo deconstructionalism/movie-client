@@ -11,7 +11,7 @@ const MovieDelete = props => {
       <Form legendText="Delete a Movie"
             buttonText="Delete Movie"
             setFeedback={ props.setFeedback }
-            feedbackSuccess="deleted movie"
+            feedbackSuccess={ (_, form) => `deleted movie ID: ${ form.id.value }` }
             feedbackFailure="failed to delete movie"
             request={ deleteMovie }>
 

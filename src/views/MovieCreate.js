@@ -11,8 +11,8 @@ const MovieCreate = props => {
         <Form legendText="Make a New Movie"
               buttonText="Create Movie"
               setFeedback={ props.setFeedback }
-              feedbackSuccess="made a new movie"
-              feedbackFailure="failed to make a new movie"
+              feedbackSuccess={ res => `created movie ID: ${ res.data.movie.id }` }
+              feedbackFailure="failed to create a movie"
               request={ createMovie }>
 
                <Input name="title"
