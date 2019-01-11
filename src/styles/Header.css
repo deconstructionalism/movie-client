@@ -1,0 +1,24 @@
+.Header {
+    color: rgb(231, 187, 105);
+    background-color: #261f41;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+nav.Header {
+    position: sticky;
+    top: 0;
+    background-color: #261f41;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+nav.Header >* {
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+nav.Header .current {
+    color: rgb(231, 187, 105);
+}
