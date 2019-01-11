@@ -11,7 +11,8 @@ class Input extends Component {
       return (
         <label className="Input">
           <span>{ titleCase(this.props.name) }</span>
-          <input className={ invalid ? 'invalid': '' } {...this.props} />
+          <input className={ invalid ? 'invalid': '' } 
+                 {...this.props} />
           { invalid 
               ? <span className="invalid">{ errorMessage }</span>
               : undefined
