@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const baseUrl = "http://localhost:4741" 
+import { baseUrl } from '../config/server.js'
 
 export const getMovies = () => axios.get(`${ baseUrl }/movies`)
 
