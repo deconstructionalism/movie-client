@@ -1,7 +1,7 @@
 .Movie {
   background-color: #d0cdcd;;
   margin-bottom: 1.25rem;
-  width: 50vw;
+  width: 100%;
   border-radius: 0.3rem;
   border: 0.07rem solid rgba(0,0,0,.125);
   box-shadow: 0 0.5rem 0.5rem -0.5rem gray;

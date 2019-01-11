@@ -1,10 +1,14 @@
-body {
-  font-family: sans-serif;
-  background-color: #FFF;
+html {
   font-size: 15px;
 }
 
-*, * > * {
+body {
+  font-family: sans-serif;
+  background-color: #FFF;
+}
+
+*,
+*>* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -29,6 +33,10 @@ main {
   justify-content: center;
 }
 
+main>* {
+  min-width: 500px;
+}
+
 section {
   padding-top: 3rem;
   display: flex;
@@ -47,4 +55,16 @@ input {
 
 p {
   font-size: 1.2rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 10px;
+  }
+
+  main>* {
+    width: 100vw;
+    min-width: 0;
+  }
 }
