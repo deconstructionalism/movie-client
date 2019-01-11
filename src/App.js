@@ -32,7 +32,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <Feedback key={ this.state.reloadToggle } 
           message={ this.state.message }
           type={ this.state.type }/>

@@ -1,22 +1,28 @@
 .Header {
     color: rgb(231, 187, 105);
     background-color: #261f41;
-    padding-left: 20px;
-    padding-top: 20px;
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+h1.Header {
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 3.3rem;
 }
 
 nav.Header {
     position: sticky;
     top: 0;
     background-color: #261f41;
-    padding-left: 20px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-left: 1.5rem;
+    padding-bottom: 0.7rem;
+    padding-top: 0.7rem;
 }
 
 nav.Header >* {
-    margin-right: 20px;
-    font-size: 16px;
+    margin-right: 1.5rem;
+    font-size: 1rem;
 }
 
 nav.Header .current {

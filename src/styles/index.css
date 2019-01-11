@@ -1,8 +1,7 @@
 body {
   font-family: sans-serif;
   background-color: #FFF;
-  height: 100vh;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 *, * > * {
@@ -10,6 +9,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  transition: all 0.3s;
 }
 
 a,
@@ -17,7 +17,6 @@ a:visited,
 a:link {
   color: white;
   text-decoration: none;
-  transition: color 0.3s;
 }
 
 a:hover {
@@ -25,23 +24,27 @@ a:hover {
 }
 
 main {
-  margin-top: 20px;
+  margin-top: 1.8rem;
   display: flex;
   justify-content: center;
 }
 
 section {
-  padding-top: 40px;
+  padding-top: 3rem;
   display: flex;
   justify-content: center;
 }
 
 input {
-  margin-bottom: 15px;
-  margin-top: 5px;
-  padding: 5px 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  height: 40px;
+  margin-bottom: 1rem;
+  margin-top: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  height: 2.5rem;
   width: 100%;
+}
+
+p {
+  font-size: 1.2rem;
 }
