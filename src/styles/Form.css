@@ -1,0 +1,37 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-right: 0;
+    margin-left: 0;
+    border: .2rem solid rgba(0, 0, 0, .075);
+}
+
+.Form legend {
+    background-color: #261f41;
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 100%;
+}
+
+.Form fieldset {
+    padding: 22px;
+    border: 0;
+}
+
+.Form input[type="submit"] {
+    border: 0;
+    background-color: rgb(247, 190, 83);
+    color: #fff;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.Form input[type="submit"]:hover {
+    background-color: orange;
+    cursor: pointer;
+}

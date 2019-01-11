@@ -12,8 +12,6 @@ body {
   outline: none;
 }
 
-
-
 a,
 a:visited,
 a:link {
@@ -31,37 +29,12 @@ main {
   margin-left: 20px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding: 1.5rem;
-  margin-right: 0;
-  margin-left: 0;
-  border: .2rem solid rgba(0,0,0,.075);
-}
-
 input {
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  margin: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
   padding: 5px 8px;
   border-radius: 4px;
   font-size: 14px;
-}
-
-input[type="submit"] {
-  padding: 5px;
-  border: 0;
-  border-radius: 4px;
-  background-color: rgb(247, 190, 83);
-  color: #fff;
-  transition: background-color 0.3s;
-}
-
-input[type="submit"]:hover {
-  background-color: orange;
-  cursor: pointer;
+  height: 40px;
+  width: 100%;
 }
