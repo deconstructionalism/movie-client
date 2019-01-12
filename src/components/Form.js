@@ -16,9 +16,9 @@ class Form extends Component {
     const initialState = {}
 
     React.Children.forEach(children, child => {
-      const { name } = child.props
+      const { name, value } = child.props
       
-      if (name) initialState[name] = { value: '', invalid: false}
+      if (name) initialState[name] = { value: value || '', invalid: false}
     })
 
     this.setState(initialState)

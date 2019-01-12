@@ -27,8 +27,12 @@ class MovieIndex extends Component {
 
   render() {
 
+    const { setFeedback } = this.props
+
     const movies = this.state.movies.map((data, index) => {
-      return <Movie key={ index } data={ data }/> 
+      return <Movie key={ index } 
+                    data={ data }
+                    setFeedback={ setFeedback }/> 
     })
 
     return (
