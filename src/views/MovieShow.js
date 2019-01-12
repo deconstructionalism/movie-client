@@ -31,7 +31,7 @@ class MovieShow extends Component {
 
                <Input name="id"
                       type="text"
-                      errorMessage="must be a positive integer"
+                      errormessage="must be a positive integer"
                       required/>
 
         </Form>

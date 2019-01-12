@@ -6,15 +6,15 @@ import '../styles/Input.css'
 class Input extends Component {
 
     render() {
-      const { invalid, errorMessage='error' } = this.props
+      const { invalid, errormessage='error', ...rest} = this.props
 
       return (
         <label className="Input">
           <span>{ titleCase(this.props.name) }</span>
-          <input className={ invalid ? 'invalid': '' } 
-                 {...this.props} />
+          <input className={ invalid === true ? 'invalid': '' } 
+                 { ...rest} />
           { invalid 
-              ? <span className="invalid">{ errorMessage }</span>
+              ? <span className="invalid">{ errormessage }</span>
               : undefined
           }
         </label>
