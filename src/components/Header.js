@@ -23,10 +23,12 @@ const Header = props => {
           { Links }
           { currentPath === '/movies' 
               ? <SortFilterBar sortBy={ props.sortBy }
-                                 sortAscending={ props.sortAscending }
-                                 setSort={ props.setSort }
-                                 setFilterBy={ props.setFilterBy }
-                                 filterBy={ props.filterBy }/> 
+                               sortAscending={ props.sortAscending }
+                               setSort={ props.setSort }
+                               setFilter={ props.setFilter }
+                               filter={ props.filter }
+                               numberMovies={ props.numberMovies }
+                               sort={ props.sort }/> 
               : undefined }
         </nav>
       </React.Fragment>

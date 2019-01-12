@@ -35,3 +35,12 @@ export const sortNestedObject = (values, type, keyArr=null, ascending=true) => {
       return 0
   })
 }
+
+export const generateNestedState = (prevState, nestedKey, newNestedValues) => {
+  const nextNestedState = { [nestedKey]: {
+      ...prevState[nestedKey], 
+      ...newNestedValues
+    }
+  }
+  return { ...prevState, ...nextNestedState }
+}

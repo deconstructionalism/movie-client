@@ -1,7 +1,6 @@
 import React from 'react'
 import Movie from '../components/Movie.js'
 
-
 const MovieBrowse = props =>  {
 
   const { setFeedback, movies, loadMovies } = props

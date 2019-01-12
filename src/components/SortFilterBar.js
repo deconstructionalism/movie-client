@@ -6,7 +6,7 @@ class SortFilterBar extends Component {
 
   handleSearchChange = event => {
     const { value } = event.target
-    this.props.setFilterBy(value)
+    this.props.setFilter(value)
   }
 
   render() {
@@ -24,8 +24,9 @@ class SortFilterBar extends Component {
         </form>
 
         <form className="searchForm">
-            <input value={ this.props.filterBy }
+            <input value={ this.props.filter.by }
                    onChange={ this.handleSearchChange }/>
+            <span>{ `${this.props.numberMovies} found` }</span>
         </form>
         
       </div>
@@ -34,18 +35,25 @@ class SortFilterBar extends Component {
 }
 
 const SortButton = props => {
-  const { sortBy, sortAscending, name, setSort } = props
+  const { sort, name, setSort } = props
+  const { by, ascending } = sort
 
-  const value = sortBy === name
-                  ? sortAscending
-                    ? `${name} +`
-                    : `${name} -`
-                  : name
+  const isActive = by === name ? 'active' : ''
+  
+  const ascendDescend = isActive 
+          ? ascending
+            ? 'ascending'
+            : 'descending'
+          : ''
+    
+
   return (
-    <input className={ sortBy === name ? 'active' : '' }
-                      type="button" 
-                      value={ value }
-                      onClick={ () => setSort(name) }/>
+    <div className={ `${isActive} ${ascendDescend}` }>
+      <input 
+            type="button" 
+            value={ name }
+            onClick={ () => setSort(name) }/>
+   </div>
   )
 }
 
