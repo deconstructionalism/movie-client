@@ -10,7 +10,8 @@ const MovieDeleteForm = props => (
           setFeedback={ props.setFeedback }
           feedbackSuccess={ (_, form) => `deleted movie ID: ${ form.id.value }` }
           feedbackFailure="failed to delete movie"
-          request={ deleteMovie }>
+          request={ deleteMovie }
+          postRequestCallback={ props.postRequestCallback }>
   
           <Input name="id"
                  value={ props.data.id } 

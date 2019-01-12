@@ -11,6 +11,7 @@ const MovieUpdateForm = props => (
           feedbackSuccess={ res => `updated movie ID: ${ res.data.movie.id }` }
           feedbackFailure="failed to update movie" 
           request={ updateMovie }
+          postRequestCallback={ props.postRequestCallback }
           dropEmpty>
   
       <Input name="id"

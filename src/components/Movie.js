@@ -22,15 +22,25 @@ class Movie extends Component {
 
     const Contents = () => {
       const { mode } = this.state
-      const { data, setFeedback } = this.props
+      const { data, setFeedback, loadMovies } = this.props
 
       switch (mode) {
         case 'edit':
-          return <MovieUpdateForm data={ data } setFeedback={ setFeedback }/>
+          return <MovieUpdateForm data={ data } 
+                                  setFeedback={ setFeedback }
+                                  postRequestCallback={ () => {
+                                    this.onCancelClick()
+                                    loadMovies() 
+                                  } }/>
 
         case 'delete':
-          return <MovieDeleteForm data={ data } setFeedback={ setFeedback }/>
-          
+          return <MovieDeleteForm data={ data } 
+                                  setFeedback={ setFeedback }
+                                  postRequestCallback={ () => {
+                                    this.onCancelClick()
+                                    loadMovies() 
+                                  } }/>
+        
         default: 
           return (
             <React.Fragment>
