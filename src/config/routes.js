@@ -1,13 +1,9 @@
-import React from 'react'
+import Home from '../views/Home.js'
 import MovieIndex from '../views/MovieIndex.js'
 import MovieShow from '../views/MovieShow.js'
 import MovieCreate from '../views/MovieCreate.js'
 import MovieUpdate from '../views/MovieUpdate.js'
 import MovieDelete from '../views/MovieDelete.js'
-
-const Home = () => {
-    return  <p> Welcome to the Movie app! </p>
-}
 
 const routes = [{
         view: Home,
