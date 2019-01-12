@@ -90,9 +90,14 @@ class Form extends Component {
     } = this.props
     
     this.props.request(data)
-      .then(postRequestCallback)
-      .then(res => setFeedback(this.dynamicFeedback(res, feedbackSuccess), 'success'))
-      .catch(err => setFeedback(this.dynamicFeedback(err, feedbackFailure), 'error'))
+      .then(res => {
+        setFeedback(this.dynamicFeedback(res, feedbackSuccess), 'success')
+        postRequestCallback && postRequestCallback(res)
+      })
+      .catch(err => {
+        setFeedback(this.dynamicFeedback(err, feedbackFailure), 'error')
+        postRequestCallback && postRequestCallback(err)
+      })
       .finally(this.clearForm)
   }
 
