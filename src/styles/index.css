@@ -28,7 +28,7 @@ a:hover {
 }
 
 main {
-  margin-top: 1.8rem;
+  margin-top: 5rem;
   display: flex;
   justify-content: center;
 }
@@ -43,7 +43,7 @@ section {
   justify-content: center;
 }
 
-input {
+input, select {
   margin-bottom: 1rem;
   margin-top: 0.3rem;
   padding: 0.3rem 0.5rem;
