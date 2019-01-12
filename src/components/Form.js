@@ -93,14 +93,24 @@ class Form extends Component {
       .then(postRequestCallback)
       .then(res => setFeedback(this.dynamicFeedback(res, feedbackSuccess), 'success'))
       .catch(err => setFeedback(this.dynamicFeedback(err, feedbackFailure), 'error'))
+      .finally(this.clearForm)
   }
+
+  clearForm = () => {
+    this.setState(prevState => {
+      const newState = {}
+      for(let key in prevState) {
+        newState[key] = { value: '', invalid: false}
+      }
+      return newState
+    })
+}
 
   dynamicFeedback = (res, feedback) => {
     return feedback instanceof Function
       ? feedback(res, this.state) 
       : feedback
   }
-
 
   render() {
     
