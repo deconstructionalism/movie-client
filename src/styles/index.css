@@ -13,8 +13,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   outline: none;
-  transition: color 0.3s;
-  transition: box-shadow 0.3s;
+  transition: color 0.3s, border-color 0.3s, box-shadow 0.3s, border 0.3s;
 }
 
 a,
