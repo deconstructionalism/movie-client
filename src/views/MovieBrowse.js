@@ -1,37 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Movie from '../components/Movie.js'
 
 
-class MovieBrowse extends Component {
+const MovieBrowse = props =>  {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     movies: [],
-  //     loaded: false,
-  //   }
-  // }
+  const { setFeedback, movies, loadMovies } = props
 
+  const Movies = movies.map((data, index) => {
+    return <Movie key={ index } 
+                  data={ data }
+                  setFeedback={ setFeedback }
+                  loadMovies={ loadMovies }/> 
+  })
 
-
-
-  render() {
-
-    const { setFeedback, movies, loadMovies } = this.props
-
-    const Movies = movies.map((data, index) => {
-      return <Movie key={ index } 
-                    data={ data }
-                    setFeedback={ setFeedback }
-                    loadMovies={ loadMovies }/> 
-    })
-
-    return (
-      <div>
-        { Movies }
-      </div>
-    )
-  }
+  return (
+    <div>
+      { Movies }
+    </div>
+  )
+  
 }
 
 export default MovieBrowse
