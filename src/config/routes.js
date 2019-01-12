@@ -1,5 +1,5 @@
 import Home from '../views/Home.js'
-import MovieIndex from '../views/MovieIndex.js'
+import MovieBrowse from '../views/MovieBrowse.js'
 import MovieCreate from '../views/MovieCreate.js'
 
 const routes = [{
@@ -8,7 +8,7 @@ const routes = [{
         linkText: 'Home'
     },
     {
-        view: MovieIndex,
+        view: MovieBrowse,
         path: '/movies',
         linkText: 'Browse'
     },

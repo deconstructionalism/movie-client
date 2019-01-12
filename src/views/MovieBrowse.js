@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Movie from '../components/Movie.js'
 
 
-class MovieIndex extends Component {
+class MovieBrowse extends Component {
 
   // constructor(props) {
   //   super(props)
@@ -34,4 +34,4 @@ class MovieIndex extends Component {
   }
 }
 
-export default MovieIndex
+export default MovieBrowse
