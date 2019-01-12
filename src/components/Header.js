@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SearchFilterBar from '../components/SearchFilterBar.js'
+import SortFilterBar from '../components/SortFilterBar.js'
 
 import '../styles/Header.css'
 import routes from '../config/routes.js'
@@ -22,7 +22,7 @@ const Header = props => {
         <nav className="Header">
           { Links }
           { currentPath === '/movies' 
-              ? <SearchFilterBar sortBy={ props.sortBy }
+              ? <SortFilterBar sortBy={ props.sortBy }
                                  sortAscending={ props.sortAscending }
                                  setSort={ props.setSort }
                                  setFilterBy={ props.setFilterBy }

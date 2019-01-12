@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 
-import '../styles/SearchFilterBar.css'
+import '../styles/SortFilterBar.css'
 
-class SearchFilterBar extends Component {
+class SortFilterBar extends Component {
 
   handleSearchChange = event => {
     const { value } = event.target
-    console.log(value)
     this.props.setFilterBy(value)
   }
 
   render() {
     return (
-      <div className="SearchFilterBar">
+      <div className="SortFilterBar">
         <form className="sortForm">
           <SortButton name="id"
                       {...this.props} />
@@ -52,4 +51,4 @@ const SortButton = props => {
 
 
 
-export default SearchFilterBar
+export default SortFilterBar
