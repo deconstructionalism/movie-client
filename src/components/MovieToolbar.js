@@ -8,17 +8,20 @@ const MovieToolbar = props => {
       mode,
       onCancelClick,
       onDeleteClick,
-      onEditClick
+      onUpdateClick
      } = props 
   
     return (
       <div className="MovieToolbar">
         { mode === null 
             ? <React.Fragment>
-                <button onClick={ onEditClick }>E</button>
-                <button onClick={ onDeleteClick }>D</button>
+                <button title="Update" 
+                        onClick={ onUpdateClick }>U</button>
+                <button title="Delete" 
+                        onClick={ onDeleteClick }>D</button>
               </React.Fragment>
-            : <button onClick={ onCancelClick }>X</button>
+            : <button title="Cancel" 
+                      onClick={ onCancelClick }>X</button>
         }
       </div>
     )

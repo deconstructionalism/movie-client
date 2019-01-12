@@ -23,7 +23,7 @@ nav.Header {
 
 nav.Header >* {
     margin-right: 1.5rem;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 nav.Header .current {

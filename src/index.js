@@ -1,12 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './styles/index.css'
 import App from './App'
 import { HashRouter } from 'react-router-dom'
 
-// this is a stateless Component
-// that wraps our whole application in
-// a HashRouter
+import './styles/index.css'
+
 const AppRouter = () => {
   return (
     <HashRouter>

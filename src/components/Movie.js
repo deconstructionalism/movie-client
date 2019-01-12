@@ -15,7 +15,7 @@ class Movie extends Component {
   }
 
   onCancelClick = () => this.setState({ mode: null })
-  onEditClick = () => this.setState({ mode: 'edit' })
+  onUpdateClick = () => this.setState({ mode: 'edit' })
   onDeleteClick = () => this.setState({ mode: 'delete' })
 
   render() {
@@ -60,7 +60,7 @@ class Movie extends Component {
           <MovieToolbar mode={ this.state.mode }
                         onCancelClick={ this.onCancelClick }
                         onDeleteClick={ this.onDeleteClick }
-                        onEditClick={ this.onEditClick }/>
+                        onUpdateClick={ this.onUpdateClick }/>
         </h1>
         <div className="details">
           
