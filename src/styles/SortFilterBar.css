@@ -1,0 +1,103 @@
+.SortFilterBar {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  background: black;
+  position: absolute;
+  left: 0;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.SortFilterBar form {
+  display: flex;
+  flex-direction: row;
+}
+
+.SortFilterBar input {
+  height: 1.5rem;
+  margin: 0.5rem;
+}
+
+.SortFilterBar div:first-of-type input {
+  padding-left: 0;
+}
+
+.SortFilterBar .sortForm {
+  height: 100%;
+}
+
+.SortFilterBar .sortForm div {
+  height: 100%;
+}
+.SortFilterBar .sortForm input {
+  font-size: 0.8rem;
+  font-weight: bold;
+  background: transparent;
+  border: 0;
+  color: white;
+  text-transform: uppercase;
+  /* width: 5.5rem; */
+  margin-left: 0;
+  text-align: left;
+  height: 100%;
+
+}
+
+.SortFilterBar .sortForm div:hover, .SortFilterBar .sortForm input:hover {
+  color: rgb(231, 187, 105);
+  cursor: pointer;
+}
+
+.SortFilterBar .sortForm .active input {
+  color: rgb(231, 187, 105);
+} 
+
+.SortFilterBar .sortForm .active {
+  position: relative;
+}
+
+.SortFilterBar .sortForm .active.ascending::after {
+  content: '\25BC';
+  color: rgb(231, 187, 105);
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.SortFilterBar .sortForm .active.descending::after {
+  content: '\25B2';
+  color: rgb(231, 187, 105);
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.SortFilterBar .searchForm {
+  height: 100%;
+}
+.SortFilterBar .searchForm input {
+  border: 0;
+}
+
+.SortFilterBar .searchForm span {
+  font-size: 1rem;
+  color: gray;
+  display: flex;
+  align-items: center;
+  width: 10rem;
+
+  /* white-space:nowrap;
+  line-height: 0.8rem; */
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SortFilterBar from '../components/SortFilterBar.js'
 
 import '../styles/Header.css'
 import routes from '../config/routes.js'
@@ -19,9 +20,16 @@ const Header = props => {
       <React.Fragment>
         <h1 className="Header">Movies</h1>
         <nav className="Header">
-
-        { Links }
-
+          { Links }
+          { currentPath === '/movies' 
+              ? <SortFilterBar sortBy={ props.sortBy }
+                               sortAscending={ props.sortAscending }
+                               setSort={ props.setSort }
+                               setFilter={ props.setFilter }
+                               filter={ props.filter }
+                               numberMovies={ props.numberMovies }
+                               sort={ props.sort }/> 
+              : undefined }
         </nav>
       </React.Fragment>
     )

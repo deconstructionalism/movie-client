@@ -6,7 +6,14 @@ import '../styles/Input.css'
 class Input extends Component {
 
     render() {
-      const { invalid, errormessage='error', ...rest} = this.props
+      const { 
+        invalid, 
+        errormessage='error', 
+        hidden,
+        ...rest
+      } = this.props
+
+      if (hidden) return null
 
       return (
         <label className="Input">

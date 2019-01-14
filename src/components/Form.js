@@ -16,9 +16,9 @@ class Form extends Component {
     const initialState = {}
 
     React.Children.forEach(children, child => {
-      const { name } = child.props
+      const { name, value } = child.props
       
-      if (name) initialState[name] = { value: '', invalid: false}
+      if (name) initialState[name] = { value: value || '', invalid: false}
     })
 
     this.setState(initialState)
@@ -39,15 +39,15 @@ class Form extends Component {
     event.preventDefault()
     this.validateFields()
   }
-
+  
   validateFields = () => {
     const nextState = {}
     for(let key in this.state) {
-
+      
       const { invalid, value } = this.state[key]
       const validatorName = `validate${titleCase(key)}`
       const validator = validations[validatorName]
-
+      
       nextState[key] = validator
         ? { value, invalid: value === '' ? false : !validator(value) }
         : { value, invalid }
@@ -90,20 +90,27 @@ class Form extends Component {
     } = this.props
     
     this.props.request(data)
-      .then(postRequestCallback)
-      .then(res => setFeedback(this.dynamicFeedback(res, feedbackSuccess), 'success'))
-      .catch(err => setFeedback(this.dynamicFeedback(err, feedbackFailure), 'error'))
-      .finally(this.clearForm)
+      .then(res => {
+        this.clearForm()
+        setFeedback(this.dynamicFeedback(res, feedbackSuccess), 'success')
+        return res
+      })
+      .catch(err => {
+        this.clearForm()
+        setFeedback(this.dynamicFeedback(err, feedbackFailure), 'error')
+        return err
+      })
+      .finally((data) => postRequestCallback && postRequestCallback(data))
   }
 
-  clearForm = () => {
+  clearForm = (callback) => {
     this.setState(prevState => {
       const newState = {}
       for(let key in prevState) {
         newState[key] = { value: '', invalid: false}
       }
       return newState
-    })
+    }, callback)
 }
 
   dynamicFeedback = (res, feedback) => {

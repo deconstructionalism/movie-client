@@ -13,7 +13,8 @@ const MovieCreate = props => {
               setFeedback={ props.setFeedback }
               feedbackSuccess={ res => `created movie ID: ${ res.data.movie.id }` }
               feedbackFailure="failed to create a movie"
-              request={ createMovie }>
+              request={ createMovie }
+              postRequestCallback={ () => props.loadMovies(true) }>
 
                <Input name="title"
                       type="text"
