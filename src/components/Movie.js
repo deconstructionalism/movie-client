@@ -30,7 +30,7 @@ class Movie extends Component {
                                   setFeedback={ setFeedback }
                                   postRequestCallback={ () => {
                                     this.onCancelClick()
-                                    loadMovies() 
+                                    loadMovies(true) 
                                   } }/>
 
         case 'delete':
@@ -38,7 +38,7 @@ class Movie extends Component {
                                   setFeedback={ setFeedback }
                                   postRequestCallback={ () => {
                                     this.onCancelClick()
-                                    loadMovies() 
+                                    loadMovies(true) 
                                   } }/>
         
         default: 

@@ -48,11 +48,11 @@ const SortButton = props => {
     
 
   return (
-    <div className={ `${isActive} ${ascendDescend}` }>
+    <div className={ `${isActive} ${ascendDescend}` }
+         onClick={ () => setSort(name) }>
       <input 
             type="button" 
-            value={ name }
-            onClick={ () => setSort(name) }/>
+            value={ name }/>
    </div>
   )
 }

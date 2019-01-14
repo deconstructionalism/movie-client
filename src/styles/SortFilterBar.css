@@ -6,6 +6,8 @@
   background: black;
   position: absolute;
   left: 0;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
 }
 
 .SortFilterBar form {
@@ -13,9 +15,13 @@
   flex-direction: row;
 }
 
-.SortFilterBar input, .SortFilterBar select {
+.SortFilterBar input {
   height: 1.5rem;
   margin: 0.5rem;
+}
+
+.SortFilterBar div:first-of-type input {
+  padding-left: 0;
 }
 
 .SortFilterBar .sortForm {
@@ -39,7 +45,7 @@
 
 }
 
-.SortFilterBar .sortForm input:hover {
+.SortFilterBar .sortForm div:hover, .SortFilterBar .sortForm input:hover {
   color: rgb(231, 187, 105);
   cursor: pointer;
 }
@@ -53,27 +59,27 @@
 }
 
 .SortFilterBar .sortForm .active.ascending::after {
-  content: '+';
+  content: '\25BC';
   color: rgb(231, 187, 105);
   font-size: 0.8rem;
   font-weight: bold;
   position: absolute;
   top: 0;
-  right: 0.4rem;
-  height: 100%;
+  bottom: 0;
+  right: 0.2rem;
   display: flex;
   align-items: center;
 }
 
 .SortFilterBar .sortForm .active.descending::after {
-  content: '-';
+  content: '\25B2';
   color: rgb(231, 187, 105);
   font-size: 0.8rem;
   font-weight: bold;
   position: absolute;
   top: 0;
-  right: 0.4rem;
-  height: 100%;
+  bottom: 0;
+  right: 0.2rem;
   display: flex;
   align-items: center;
 }
@@ -88,6 +94,9 @@
 .SortFilterBar .searchForm span {
   font-size: 1rem;
   color: gray;
+  display: flex;
+  align-items: center;
+  width: 10rem;
 
   /* white-space:nowrap;
   line-height: 0.8rem; */

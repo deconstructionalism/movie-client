@@ -39,15 +39,15 @@ class Form extends Component {
     event.preventDefault()
     this.validateFields()
   }
-
+  
   validateFields = () => {
     const nextState = {}
     for(let key in this.state) {
-
+      
       const { invalid, value } = this.state[key]
       const validatorName = `validate${titleCase(key)}`
       const validator = validations[validatorName]
-
+      
       nextState[key] = validator
         ? { value, invalid: value === '' ? false : !validator(value) }
         : { value, invalid }
@@ -91,24 +91,26 @@ class Form extends Component {
     
     this.props.request(data)
       .then(res => {
+        this.clearForm()
         setFeedback(this.dynamicFeedback(res, feedbackSuccess), 'success')
-        postRequestCallback && postRequestCallback(res)
+        return res
       })
       .catch(err => {
+        this.clearForm()
         setFeedback(this.dynamicFeedback(err, feedbackFailure), 'error')
-        postRequestCallback && postRequestCallback(err)
+        return err
       })
-      .finally(this.clearForm)
+      .finally((data) => postRequestCallback && postRequestCallback(data))
   }
 
-  clearForm = () => {
+  clearForm = (callback) => {
     this.setState(prevState => {
       const newState = {}
       for(let key in prevState) {
         newState[key] = { value: '', invalid: false}
       }
       return newState
-    })
+    }, callback)
 }
 
   dynamicFeedback = (res, feedback) => {

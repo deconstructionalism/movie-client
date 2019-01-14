@@ -1,22 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Movie from '../components/Movie.js'
 
-const MovieBrowse = props =>  {
+class MovieBrowse extends Component  {
+  
+  shouldComponentUpdate(nextProps) {
+    const { reloadToggle : current } = this.props.feedback
+    const { reloadToggle : next } = nextProps.feedback
+    return current === !next ? false : true
+  }
 
-  const { setFeedback, movies, loadMovies } = props
+  render () {
+    const { setFeedback, movies, loadMovies } = this.props
 
-  const Movies = movies.map((data, index) => {
-    return <Movie key={ index } 
-                  data={ data }
-                  setFeedback={ setFeedback }
-                  loadMovies={ loadMovies }/> 
-  })
+    const Movies = movies.map((data, index) => {
+      return <Movie key={ index } 
+                    data={ data }
+                    setFeedback={ setFeedback }
+                    loadMovies={ loadMovies }/> 
+    })
 
-  return (
-    <div>
-      { Movies }
-    </div>
-  )
+    return (
+      <div>
+        { Movies }
+      </div>
+    )
+  }
   
 }
 

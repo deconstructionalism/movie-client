@@ -36,13 +36,6 @@ class App extends Component {
     this.loadMovies()
   }
 
-
-  // shouldComponentUpdate(_, nextState) {
-  //   return nextState.moviesLoaded === false 
-  //     ? true 
-  //     : !this.state.moviesLoaded
-  // }
-
   sortMovies = () => {
     const { by, ascending } = this.state.sort
     const { movies } = this.state
@@ -89,8 +82,10 @@ class App extends Component {
   }
 
 
-  loadMovies = () => {
-    
+  loadMovies = (silent=false) => {
+
+    console.log(silent)
+
     getMovies()
       .then(res => {
         const { movies } = res.data
@@ -98,13 +93,19 @@ class App extends Component {
         this.setState({ movies, moviesLoaded: false }, this.sortMovies)
         return res
       })
-      .then(res => this.setFeedback(`got ${ res.data.movies.length } movies`, 'success'))
+      .then(res => !silent && this.setFeedback(`got ${ res.data.movies.length } movies`, 'success'))
       .then(() => this.setState({ moviesLoaded: true }))
-      .catch(() => this.setFeedback('unable to get all movies', 'error'))
+      .catch(() => !silent && this.setFeedback('unable to get all movies', 'error'))
   }
 
   setFeedback = (message, type='success') => {
-    this.setState(prevState => genNestState(prevState, 'feedback', { message, type }))
+    this.setState(prevState => genNestState(prevState, 'feedback', { 
+      message, 
+      type, 
+      reloadToggle: false 
+    }), () => this.setState(prevState => genNestState(prevState, 'feedback', { 
+      reloadToggle: true 
+    })))
   }
 
   setSort = nextBy => {
@@ -125,7 +126,6 @@ class App extends Component {
     const { movies, ...rest } = this.state
 
     const Routes = routes.map((route, index) => {
-
       const { path, view: View } = route
 
       return <Route key={ index }
@@ -138,13 +138,12 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Feedback key={ this.state.feedbackReloadToggle } 
-                  message={ this.state.feedbackMessage }
-                  type={ this.state.feedbackType }/>
+       
+        <Feedback key={ this.state.feedback.reloadToggle }
+                  message={ this.state.feedback.message }
+                  type={ this.state.feedback.type }/>
   
         <Header currentPath={ this.props.history.location.pathname }
-                sortBy={ this.state.sortBy }
-                sortAscending={ this.state.sortAscending }
                 setSort={ this.setSort }
                 setFilter={ this.setFilter }
                 filter ={ this.state.filter }
